@@ -1,6 +1,6 @@
 {
   "name": "@kirknock/node-openxr-core",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "type": "module",
   "description": "OpenXR over koffi, IWER WebXR driven from the native session, and the Node platform (browser globals, canvas, XHR, images) that Babylon.js apps run on.",
   "license": "MIT",
