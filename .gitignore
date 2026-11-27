@@ -1,0 +1,12 @@
+node_modules/
+dist/
+*.tgz
+.yalc/
+yalc.lock
+out/
+logs/
+target-logs/
+.idea/
+.vscode/
+.env
+.npmrc

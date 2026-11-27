@@ -1,0 +1,102 @@
+{
+  "name": "@kirknock/node-openxr-core",
+  "version": "0.3.0",
+  "type": "module",
+  "description": "OpenXR over koffi, IWER WebXR driven from the native session, and the Node platform (browser globals, canvas, XHR, images) that Babylon.js apps run on.",
+  "license": "MIT",
+  "author": "kirknock",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kirknock/node-openxr-core.git"
+  },
+  "homepage": "https://github.com/kirknock/node-openxr-core#readme",
+  "bugs": {
+    "url": "https://github.com/kirknock/node-openxr-core/issues"
+  },
+  "keywords": [
+    "openxr",
+    "webxr",
+    "xr",
+    "vr",
+    "babylonjs",
+    "koffi",
+    "iwer",
+    "node"
+  ],
+  "exports": {
+    "./*.js": {
+      "types": "./dist/*.d.ts",
+      "default": "./dist/*.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "scripts/run-tests.mjs"
+  ],
+  "bin": {
+    "nodexr-test": "scripts/run-tests.mjs"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "build": "node -e \"fs.rmSync('dist', { recursive: true, force: true })\" && tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "lint": "eslint src tests",
+    "test": "node scripts/run-tests.mjs all",
+    "test:pure": "node scripts/run-tests.mjs pure",
+    "test:gl": "nodexr-test gl",
+    "test:xr": "nodexr-test xr",
+    "test:webgpu": "nodexr-test webgpu",
+    "push": "npm run build && npx --yes yalc@1.0.0-pre.53 publish --push",
+    "gen:abi": "node scripts/gen-xr-abi.mjs",
+    "probe": "tsx src/tools/probe.ts",
+    "probe:bindings": "tsx src/tools/probe-bindings.ts",
+    "smoke:input-sources": "tsx tests/input-sources-smoke.ts",
+    "smoke:iwer": "tsx tests/iwer-smoke.ts",
+    "smoke:locomotion": "tsx tests/locomotion-smoke.ts",
+    "smoke:mirror": "tsx tests/mirror-smoke.ts",
+    "smoke:motion-controller": "tsx tests/motion-controller-smoke.ts",
+    "smoke:pointer-selection": "tsx tests/pointer-selection-smoke.ts",
+    "smoke:scene-references": "tsx tests/scene-references-smoke.ts",
+    "smoke:session-lifecycle": "tsx tests/session-lifecycle-smoke.ts",
+    "smoke:teleportation": "tsx tests/teleportation-smoke.ts",
+    "smoke:unsupported-features": "tsx tests/unsupported-features-smoke.ts",
+    "smoke:view-pose": "tsx tests/view-pose-smoke.ts",
+    "smoke:xr-camera": "tsx tests/xr-camera-smoke.ts",
+    "prepack": "npm run build"
+  },
+  "dependencies": {
+    "jpeg-js": "^0.4.4"
+  },
+  "peerDependencies": {
+    "@babylonjs/core": "9.33.2",
+    "@babylonjs/loaders": "9.33.2",
+    "iwer": "2.7.0",
+    "koffi": "2.16.3",
+    "@napi-rs/canvas": "1.0.11"
+  },
+  "peerDependenciesMeta": {
+    "@babylonjs/loaders": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@babylonjs/core": "9.33.2",
+    "@babylonjs/loaders": "9.33.2",
+    "iwer": "2.7.0",
+    "koffi": "2.16.3",
+    "@napi-rs/canvas": "1.0.11",
+    "@types/node": "^24.0.0",
+    "@types/webxr": "^0.5.14",
+    "eslint": "10.13.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.6.0",
+    "typescript-eslint": "8.70.0"
+  },
+  "engines": {
+    "node": ">=24"
+  }
+}
